@@ -1,63 +1,35 @@
-<<<<<<< HEAD
-# FinanceFrontend
+# 💰 Personal Finance Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
+Un'applicazione web per la gestione delle finanze personali, sviluppata con **Angular** (frontend) e **ASP.NET Core** (backend).  
+Permette di monitorare bilanci, transazioni, budget, pots (obiettivi di risparmio) e spese ricorrenti.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Funzionalità principali
 
-```bash
-ng serve
-```
+- ✅ Panoramica dei saldi, entrate e spese
+- 🔍 Ricerca, ordinamento e paginazione delle transazioni
+- 🧾 CRUD completo per budget e pots
+- 📊 Visualizzazione dei progressi dei pots
+- 💸 Gestione bollette ricorrenti con stato (pagato/in scadenza)
+- 🧠 Accessibilità con navigazione da tastiera
+- 📱 Responsive design per ogni dispositivo
+- 🔐 (Bonus) Autenticazione e salvataggio su database
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🛠️ Tecnologie utilizzate
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Frontend
+- Angular 17+
+- SCSS / Tailwind CSS
+- Chart.js o ngx-charts (per grafici)
 
-```bash
-ng generate component component-name
-```
+### Backend
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQLite / SQL Server
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-=======
-# FinancialApp
->>>>>>> 7cda134fa4ba2175d4dc93cc4a54192fa1c67beb
+## 📂 Struttura del progetto
