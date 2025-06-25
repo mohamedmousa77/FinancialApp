@@ -1,5 +1,5 @@
 # 💰 Personal Finance Dashboard
-
+![alt text](image.png)
 Un'applicazione web per la gestione delle finanze personali, sviluppata con **Angular** (frontend) e **ASP.NET Core** (backend).  
 Permette di monitorare bilanci, transazioni, budget, pots (obiettivi di risparmio) e spese ricorrenti.
 
@@ -33,3 +33,24 @@ Permette di monitorare bilanci, transazioni, budget, pots (obiettivi di risparmi
 ---
 
 ## 📂 Struttura del progetto
+*Frontend (Angular)*
+/finance-app/
+├── src/
+│   ├── app/
+│   │   ├── services/             --> servizi comuni, moduli shared
+│   │   ├── components/       --> componenti generici riutilizzabili
+│   │   ├── pages/            --> Overview, Transactions, ecc.
+│   │   └── models/           --> interfaces per dati (Transaction, Pot, ecc.)
+│   ├── assets/               --> immagini, icone, data.json
+│   └── environments/
+├── angular.json
+└── package.json
+
+*Backend (ASP.NET Core Web API)*
+/FinanceAPI/
+├── Controllers/
+├── Models/
+├── Services/
+├── Data/                 --> file JSON o db se usi EF Core
+├── appsettings.json
+└── Program.cs
