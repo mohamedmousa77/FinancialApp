@@ -1,0 +1,70 @@
+.overview-title {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  margin-left: 13rem;
+  margin-top: 2rem;
+}
+
+.overview-cards {
+  padding: 1rem 0;
+}
+
+.card {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  text-align: left;
+}
+// .card {
+//   background-color: #ffffff;
+//   border: none;
+// }
+
+.card-title {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.pots-card-title {
+  font-size: 0.9rem;
+  color: black;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.card-value {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.card-dark {
+  background-color: #1b1b1b;
+  color: white;
+}
+
+.card-light {
+  background-color: #ffffff;
+  color: #000;
+}
+
+
+img {
+  object-fit: cover;
+}
+
+.text-success {
+  color: #099268 !important;
+}
+
+.text-danger {
+  color: #c92a2a !important;
+}
+
+.chart-wrapper {
+  width: 180px;
+  height: 180px;
+  position: relative;
+}
