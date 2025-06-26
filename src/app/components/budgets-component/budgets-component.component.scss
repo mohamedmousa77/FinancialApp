@@ -1,20 +1,9 @@
-.overview-title {
-  font-weight: 700;
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  margin-left: 1rem;
-  margin-top: 2rem;
-}
-
-.overview-cards {
-  padding: 0.5rem 0;
-}
-
 .card {
-  padding: 1rem;
+  padding: 1.5rem;
   border-radius: 0.75rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   text-align: left;
+  max-width: 600px;
 }
 
 .card-title {
@@ -36,4 +25,11 @@
 .card-light {
   background-color: #ffffff;
   color: #000;
+}
+
+
+.chart-wrapper {
+  width: 180px;
+  height: 180px;
+  position: relative;
 }

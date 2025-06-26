@@ -1,1 +1,16 @@
-<p>menu works!</p>
+<div class="menu d-flex flex-column vh-100 bg-dark text-white p-3" style="width: 270px; border-top-right-radius: 20px;">
+  <h4 class="fw-bold mb-4 ms-1">Finance</h4>
+  <ul class="nav nav-pills flex-column gap-2">
+    <li class="nav-item" *ngFor="let item of navItems; let i = index" [ngClass]="{ 'active-nav': item.active }">
+      <a class="nav-link d-flex align-items-center" [ngClass]="{ 'bg-light text-dark': item.active }" (click)="swithPage(i)">
+        <i class="{{ item.icon }} me-2"></i> {{ item.label }}
+      </a>
+    </li>
+  </ul>
+
+  <div class="mt-auto pt-3">
+    <a class="nav-link text-muted d-flex align-items-center">
+      <i class="fas fa-angle-double-left me-2"></i> Minimize Menu
+    </a>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+.nav-link {
+color: #ccc;
+border-radius: 12px;
+padding: 10px 15px;
+font-weight: 500;
+transition: all 0.2s ease-in-out;
+cursor: pointer;
+
+i {
+  width: 20px;
+}
+
+&:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+}
+
+.active-nav .nav-link {
+  background-color: #f8f9fa !important;
+  color: #000 !important;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.menu {
+  margin: 0 !important;
+  // padding: 0 !important;
+}

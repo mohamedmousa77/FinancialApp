@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'pots-page',
+  selector: 'pots-component',
   imports: [],
   templateUrl: './pots.component.html',
   styleUrl: './pots.component.scss'
 })
-export class PotsPage {
+export class PotsComponent {
 
 }
