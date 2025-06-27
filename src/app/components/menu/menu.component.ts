@@ -23,6 +23,8 @@ constructor(private financeService :FinanceService) {}
 swithPage(pageIndex: number) {
   console.log("page index"+ pageIndex);
   this.financeService.switchPage(pageIndex);
+  this.navItems.forEach(element => { element.active = false});
+  this.navItems[pageIndex].active = true;
 }
 
 }

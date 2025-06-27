@@ -13,31 +13,31 @@ transactions = [
     name: 'Emma Richardson',
     amount: 75.50,
     date: '19 Aug 2024',
-    image: 'assets/images/emma.jpg'
+    image: 'person-placeholder.png'
   },
   {
     name: 'Savory Bites Bistro',
     amount: -55.50,
     date: '19 Aug 2024',
-    image: 'assets/icons/bread.png'
+    image: 'person-placeholder.png'
   },
   {
     name: 'Daniel Carter',
     amount: -42.30,
     date: '18 Aug 2024',
-    image: 'assets/images/daniel.jpg'
+    image: 'person-placeholder.png'
   },
   {
     name: 'Sun Park',
     amount: 120.00,
     date: '17 Aug 2024',
-    image: 'assets/images/sun.jpg'
+    image: 'person-placeholder.png'
   },
   {
     name: 'Urban Services Hub',
     amount: -65.00,
     date: '17 Aug 2024',
-    image: 'assets/icons/hub.png'
+    image: 'person-placeholder.png'
   }
 ];
 

@@ -38,10 +38,10 @@ Permette di monitorare bilanci, transazioni, budget, pots (obiettivi di risparmi
 ├── src/
 │   ├── app/
 │   │   ├── services/             --> servizi comuni, moduli shared
-│   │   ├── components/       --> componenti generici riutilizzabili
-│   │   ├── pages/            --> Overview, Transactions, ecc.
-│   │   └── models/           --> interfaces per dati (Transaction, Pot, ecc.)
-│   ├── assets/               --> immagini, icone, data.json
+│   │   ├── components/           --> componenti generici riutilizzabili
+│   │   ├── pages/                --> Overview, Transactions, ecc.
+│   │   └── models/               --> interfaces per dati (Transaction, Pot, ecc.)
+│   ├── assets/                   --> immagini, icone, data.json
 │   └── environments/
 ├── angular.json
 └── package.json

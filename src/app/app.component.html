@@ -1,15 +1,11 @@
-
-<div class="d-flex">
-    <menu-customized-component></menu-customized-component>
-    <div 
-    [ngSwitch]="pageIndex">
+<div class="d-flex w-100">
+  <menu-customized-component class="sidebar"></menu-customized-component>
+  <div class="content flex-grow-1" [ngSwitch]="pageIndex">
     <overview *ngSwitchCase="0"></overview>
     <transactions-page *ngSwitchCase="1"></transactions-page>
     <budgets-page *ngSwitchCase="2"></budgets-page>
     <pots-page *ngSwitchCase="3"></pots-page>
     <bills-page *ngSwitchCase="4"></bills-page>
-
-    </div>     
+  </div>
 </div>
-
-<router-outlet />
+<router-outlet /> 

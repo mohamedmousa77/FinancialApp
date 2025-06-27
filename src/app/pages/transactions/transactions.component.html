@@ -1,1 +1,84 @@
-<p>transactions works!</p>
+<div class="container p-4">
+  <!-- Header -->
+  <h1 class="transactions-title">Transactions</h1>
+  <p class="text-muted mb-4">View and manage all your transactions</p>
+
+  <!-- Card Wrapper -->
+  <div class="bg-white p-4 rounded-4 shadow-sm">
+
+
+<div class="container bg-white p-4 rounded-4 shadow-sm">
+  <h4 class="fw-semibold mb-4">All Transactions</h4>
+
+  <div class="d-flex flex-wrap gap-3 mb-3">
+    <!-- Search -->
+    <input
+      type="text"
+      class="form-control"
+      style="max-width: 180px;"
+      placeholder="Search transactions"
+      [(ngModel)]="searchTerm"
+    />
+
+    <!-- Category Filter -->
+    <select class="form-select" [(ngModel)]="selectedCategory" style="max-width: 180px;">
+      <option value="">All Categories</option>
+      <option *ngFor="let category of uniqueCategories" [value]="category">
+        {{ category }}
+      </option>
+    </select>
+
+    <!-- Sort By -->
+    <select class="form-select" [(ngModel)]="sortBy" style="max-width: 150px;">
+      <option value="name">Name</option>
+      <option value="category">Category</option>
+      <option value="date">Date</option>
+      <option value="amount">Amount</option>
+    </select>
+
+    <!-- Sort Order -->
+    <select class="form-select" [(ngModel)]="sortOrder" style="max-width: 150px;">
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+  </div>
+
+  <!-- Transactions Table -->
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Recipient/Sender</th>
+          <th>Category</th>
+          <th>Transaction Date</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tx of filteredTransactions">
+          <td class="fw-medium">{{ tx.name }}</td>
+          <td>{{ tx.category }}</td>
+          <td>{{ tx.date }}</td>
+          <td [ngClass]="{ 'text-success': tx.amount > 0, 'text-danger': tx.amount < 0 }">
+            {{ tx.amount > 0 ? '+' : '' }}${{ tx.amount.toFixed(2) }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+    <!-- Pagination (opzionale) -->
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <div class="text-muted small">Showing 1 to {{ transactions.length }} of {{ transactions.length }} transactions</div>
+      <nav>
+        <ul class="pagination mb-0">
+          <li class="page-item disabled"><a class="page-link">Previous</a></li>
+          <li class="page-item active"><a class="page-link">1</a></li>
+          <li class="page-item disabled"><a class="page-link">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
