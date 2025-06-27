@@ -1,6 +1,7 @@
 import { Component,OnInit  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TransactionModel } from '../../models/transaction-model';
 
 @Component({
   selector: 'transactions-page',
@@ -9,50 +10,41 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './transactions.component.scss'
 })
 export class TransactionsPage implements OnInit{
-transactions = [
+  transactions: TransactionModel[] = [
   {
     name: 'Emma Richardson',
     amount: 75.50,
     date: '19 Aug 2024',
-    image: 'person-placeholder.png',
     category: "Dinig out"
   },
   {
     name: 'Savory Bites Bistro',
     amount: -55.50,
     date: '19 Aug 2024',
-    image: 'person-placeholder.png',
     category: "General"
   },
   {
     name: 'Daniel Carter',
     amount: -42.30,
     date: '18 Aug 2024',
-    image: 'person-placeholder.png',
+    
     category: "General"
   },
   {
     name: 'Sun Park',
     amount: 120.00,
     date: '17 Aug 2024',
-    image: 'person-placeholder.png',
+    
     category: "Dinig out"
   },
   {
     name: 'Urban Services Hub',
     amount: -65.00,
     date: '17 Aug 2024',
-    image: 'person-placeholder.png',
+    
     category: "Dinig out"
   }
 ];
-
-// searchText: string = '';
-// selectedCategory: string = '';
-// sortBy: string = 'date';
-// sortOrder: string = 'desc';
-// categories: string[] = ['General', 'Dining Out', 'Entertainment', 'Bills', 'Income'];
-
 
  searchTerm = '';
   selectedCategory = '';

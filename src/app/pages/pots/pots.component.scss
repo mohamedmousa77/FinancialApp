@@ -1,7 +1,44 @@
 .header-title {
   font-weight: 700;
   font-size: 2rem;
-  margin-bottom: 0.5rem;
-  margin-left: 1rem;
-  margin-top: 2rem;
+  color: #1f2937; /* dark slate */
+}
+.custom-budget-btn {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.9rem;     
+  height: 2.7rem;           
+  line-height: 1.2;
+  border-radius: 0.5rem;
+}
+
+// Pop up 
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 1050;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content-custom {
+  width: 100%;
+  max-width: 550px;
+}
+
+.color-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.color-circle.selected {
+  border-color: #000;
 }
