@@ -3,3 +3,109 @@
   font-size: 2rem;
   color: #1f2937; /* dark slate */
 }
+
+.custom-budget-btn {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.9rem;     
+  height: 2.7rem;           
+  line-height: 1.2;
+  border-radius: 0.5rem;
+}
+
+// Main cards
+.stat-card {
+  transition: transform 0.3s ease;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  }
+}
+
+
+// Filtration 
+.filter-bar {
+  input,
+  select {
+    max-width: 200px;
+    min-width: 150px;
+  }
+}
+.status-dropdown {
+  transition: all 0.3s ease;
+  border: 2px solid #dee2e6;
+  border-radius: 0.5rem;
+  background-color: #f8f9fa;
+  font-weight: 500;
+  color: #333;
+
+  &:hover {
+    border-color: #0d6efd;
+    box-shadow: 0 0 8px rgba(13, 110, 253, 0.3);
+    background-color: #e9f2ff;
+  }
+
+  &:focus {
+    border-color: #0d6efd;
+    outline: none;
+    box-shadow: 0 0 10px rgba(13, 110, 253, 0.5);
+    background-color: #fff;
+  }
+
+  option {
+    background-color: #fff;
+    color: #212529;
+  }
+}
+
+// Each card
+.badge {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.2s ease-in-out;
+}
+
+.cursor-pointer:hover {
+  transform: scale(1.1);
+}
+
+
+// Pop up 
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 1050;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content-custom {
+  width: 100%;
+  max-width: 550px;
+}
+
+.color-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.color-circle.selected {
+  border-color: #000;
+}

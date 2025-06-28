@@ -1,10 +1,147 @@
-<div class="container p-4">
+<div class="d-flex container p-4 justify-content-between">
 <!-- Header -->
-  <h1 class="header-title">Recurring Bills</h1>
-  <p class="text-muted mb-4">Track and manage your recurring payments</p>    
-
-  <!-- <button class="btn btn-dark d-flex align-items-center gap-2 mb-4 custom-budget-btn" (click)="openModal()">
+  <div>
+    <h1 class="header-title">Recurring Bills</h1>
+    <p class="text-muted mb-4">Track and manage your recurring payments</p>
+  </div>
+  <button class="btn btn-dark d-flex align-items-center gap-2 mb-4 custom-budget-btn" (click)="openModal()">
   <i class="fas fa-plus"></i>
-  Add New Pot
-  </button>  -->
+  Add New Bill
+  </button> 
+</div>
+
+<!-- main cards for total amounts -->
+<div class="row mb-4 mx-3">
+  <div class="col-md-4" *ngFor="let item of [
+      { label: 'Total Paid', value: TotalPaid, color: 'success', icon: 'dollar-sign' },
+      { label: 'Total Upcoming', value: TotalUpcoming, color: 'warning', icon: 'calendar-alt' }
+    ]">
+    
+    <div class="card d-flex justify-content-between flex-row align-items-center p-3 shadow-sm stat-card">
+      <div>
+        <div class="text-muted">{{ item.label }}</div>
+        <div class="fw-bold fs-4 text-{{ item.color }}">
+          {{ item.value | currency:'USD' }}
+        </div>
+      </div>
+      <div class="rounded-circle bg-{{ item.color }} bg-opacity-25 p-3">
+        <i class="fas fa-{{ item.icon }} text-{{ item.color }} fs-5"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card d-flex justify-content-between flex-row align-items-center p-3 shadow-sm stat-card">
+      <div>
+        <div class="text-muted">Total Bills</div>
+        <div class="fw-bold fs-4 text-dark">{{ TotalBills }}</div>
+      </div>
+      <div class="rounded-circle bg-secondary bg-opacity-25 p-3">
+        <i class="fas fa-calendar-alt text-secondary fs-5"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Filtration -->
+<div class="filter-bar d-flex flex-wrap justify-content-center gap-3 mb-4">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Search transactions"
+    [(ngModel)]="searchTerm"
+  />
+
+  <select class="form-select status-dropdown" [(ngModel)]="sortBy">
+    <option value="name">Sort by Name</option>
+    <option value="amount">Sort by Amount</option>
+    <option value="date">Sort by Date</option>
+  </select>
+
+  <select class="form-select status-dropdown" [(ngModel)]="selectedStatus">
+    <option value="">All Status</option>
+    <option *ngFor="let st of status" [value]="st">{{ st }}</option>
+  </select>
+</div>
+
+<!-- Card for each bill -->
+<div class="row g-3 mx-2">
+  <div class="col-md-6" *ngFor="let bill of filteredBills">
+    <div class="card p-3 shadow-sm rounded-3">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="d-flex align-items-center gap-2">
+          <strong class="fs-5">{{ bill.billName }}</strong>
+          <span class="badge"
+                [ngClass]="{
+                  'bg-success-subtle text-success': bill.status === 'Paid',
+                  'bg-warning-subtle text-warning': bill.status === 'Due',
+                  'bg-danger-subtle text-danger': bill.status === 'Overdue'
+                }"
+                style="text-transform: lowercase;">
+            {{ bill.status }}
+          </span>
+        </div>
+        <div class="d-flex gap-2">
+          <i class="fas fa-pen cursor-pointer" (click)="openModalForEdit(bill)"></i>
+          <i class="fas fa-trash cursor-pointer" (click)="deleteBudget(bill.id!)"></i>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <div class="text-muted">Due: {{ bill.date || 'N/A' }}</div>
+        <div class="fw-semibold">{{ bill.amount | currency:'USD' }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal For New or Update Recurring Bill -->
+<div class="modal-backdrop" *ngIf="showModal">
+  <div class="modal-content-custom p-4 rounded-4 bg-white shadow-lg">
+    <!-- Title & Close -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4 class="fw-bold">
+        {{ selectedBillIndex !== null ? 'Edit Recurring Bill' : 'Add New Recurring Bill' }}
+      </h4>
+      <button class="btn-close" (click)="closeModal()"></button>
+    </div>
+
+    <!-- Bill Name -->
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Bill Name</label>
+      <input class="form-control" [(ngModel)]="newBill.billName" placeholder="e.g., Netflix Subscription" />
+    </div>
+
+    <!-- Amount -->
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Amount</label>
+      <input class="form-control" type="number" [(ngModel)]="newBill.amount" placeholder="0.00" />
+    </div>
+
+    <!-- Due Date -->
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Due Date</label>
+      <input class="form-control" type="text" [(ngModel)]="newBill.date" placeholder="e.g., 1st, 15th, Monthly" />
+    </div>
+
+    <!-- Status -->
+    <div class="mb-3">
+      <label class="form-label fw-semibold">Status</label>
+      <select class="form-select" [(ngModel)]="newBill.status">
+        <option value="Paid">Paid</option>
+        <option value="Due">Due</option>
+        <option value="Overdue">Overdue</option>
+      </select>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-between mt-4">
+      <button class="btn btn-outline-secondary px-4" (click)="closeModal()">Cancel</button>
+      <button class="btn btn-dark px-4" (click)="createOrUpdateBill()">
+        {{ selectedBillIndex !== null ? 'Update Bill' : 'Create New Bill' }}
+      </button>
+    </div>
+  </div>
 </div>

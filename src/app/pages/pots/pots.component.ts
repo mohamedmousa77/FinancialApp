@@ -11,8 +11,6 @@ import { Pot } from '../../models/pot-model';
 })
 export class PotsPage {
 showModal = false;
-totalTarget = 20000;
-totalSaved= 5000;
 
 editMode = false;
 editingId: number | null = null;
@@ -32,6 +30,14 @@ newPot = {
 
 themeColors = ['#2F8F9D', '#97C4D6', '#F2C57C', '#595260', '#D1493F', '#F29E4C', '#70AE6E', '#00BFFF'];
 
+
+get totalSaved() {
+  return this.pots.reduce((sum, b) => sum + b.currentAmount, 0);
+}
+
+get totalTarget() {
+  return this.pots.reduce((sum, b) => sum + b.targetAmount, 0);
+}
 openModal() {
   this.showModal = true;
 }

@@ -46,7 +46,7 @@ export class TransactionsPage implements OnInit{
   }
 ];
 
- searchTerm = '';
+  searchTerm = '';
   selectedCategory = '';
   sortBy = 'date';
   sortOrder = 'desc';
@@ -56,7 +56,7 @@ export class TransactionsPage implements OnInit{
     this.extractUniqueCategories();
   }
 
-   get filteredTransactions() {
+  get filteredTransactions() {
     let result = [...this.transactions];
 
     // Filter by search term

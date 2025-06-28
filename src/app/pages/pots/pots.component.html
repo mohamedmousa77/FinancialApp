@@ -25,7 +25,7 @@
 </div>
 
 <!-- Cards for each pot -->
- <div class="row g-3 mx-3">
+<div class="row g-3 mx-3">
   <div class="col-md-6" *ngFor="let pot of pots; let i = index">
     <div class="card p-3">
       <div class="d-flex justify-content-between align-items-center mb-2">
@@ -54,11 +54,11 @@
       <div class="d-flex justify-content-between">
         <div>
           <div class="text-muted small">Total Saved</div>
-          <div class="text-danger fw-semibold">{{ pot.currentAmount | currency:'USD' }}</div>
+          <div class="text-success fw-semibold">{{ pot.currentAmount | currency:'USD' }}</div>
         </div>
         <div>
           <div class="text-muted small">Left to Save</div>
-          <div class="text-success fw-semibold">{{ getRemaining(pot) | currency:'USD' }}</div>
+          <div class="text-dark fw-semibold">{{ getRemaining(pot) | currency:'USD' }}</div>
         </div>
       </div>
     </div>
