@@ -1,0 +1,35 @@
+# ASP.NET & Visual Studio
+
+## Build results
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Visual Studio
+.vs/
+
+## Logs & databases
+*.log
+*.db
+
+## Package management
+packages/
+*.nupkg
+
+## Others
+*.cache
+*.pidb
+*.svclog
+TestResults/
+
+## IDE
+.idea/
+.vscode/
