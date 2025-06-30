@@ -11,41 +11,6 @@ import { TransactionService } from '../../services/transaction/transaction.servi
   styleUrl: './transactions.component.scss'
 })
 export class TransactionsPage implements OnInit{
-//   transactions: TransactionModel[] = [
-//   {
-//     name: 'Emma Richardson',
-//     amount: 75.50,
-//     transactionDate: '19 Aug 2024',
-//     category: "Dinig out"
-//   },
-//   {
-//     name: 'Savory Bites Bistro',
-//     amount: -55.50,
-//     transactionDate: '19 Aug 2024',
-//     category: "General"
-//   },
-//   {
-//     name: 'Daniel Carter',
-//     amount: -42.30,
-//     transactionDate: '18 Aug 2024',
-    
-//     category: "General"
-//   },
-//   {
-//     name: 'Sun Park',
-//     amount: 120.00,
-//     transactionDate: '17 Aug 2024',
-    
-//     category: "Dinig out"
-//   },
-//   {
-//     name: 'Urban Services Hub',
-//     amount: -65.00,
-//     transactionDate: '17 Aug 2024',
-    
-//     category: "Dinig out"
-//   }
-// ];
 
   searchTerm = '';
   selectedCategory = '';

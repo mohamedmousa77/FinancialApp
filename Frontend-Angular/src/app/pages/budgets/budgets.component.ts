@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Budget } from '../../models/budget-model';
+import { BudgetServices } from '../../services/budgets/budget-services.service';
 
 @Component({
   selector: 'budgets-page',
@@ -10,7 +11,7 @@ import { Budget } from '../../models/budget-model';
   styleUrl: './budgets.component.scss'
 })
 
-export class BudgetsPage {
+export class BudgetsPage implements OnInit {
 editMode = false;
 editingId: number | null = null;
 selectedBudgetIndex: number | null = null;
@@ -31,6 +32,15 @@ newBudget = {
 };
 
 themeColors = ['#2F8F9D', '#97C4D6', '#F2C57C', '#595260', '#D1493F', '#F29E4C', '#70AE6E', '#00BFFF'];
+
+constructor(private budgetSetvices : BudgetServices) { }
+
+  ngOnInit(): void {
+    this.budgetSetvices.getAll().subscribe(data => {
+      this.budgets = data;
+    });
+
+  }
 
 openModal() {
   this.showModal = true;

@@ -13,7 +13,6 @@ private apiUrl = `${enviroment.apiUrl}/Transactions`;
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<TransactionModel[]> {
-    console.log('transaction called')
     return this.http.get<TransactionModel[]>(this.apiUrl);
   }
 
