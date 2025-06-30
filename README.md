@@ -51,10 +51,10 @@ Frontend-Angular/
 │ └── environments/
 ├── angular.json
 └── package.json
----
-
-## 🧱 Architettura del backend
-*Backend (ASP.NET Core Web API)*
+ ``` </pre>
+ ---
+## 🧱 Architettura del backend (ASP.NET Core Web API)
+<pre> ```
 Backend-ASP.NET/
 ├── BillsService/
 ├── BudgetsService/
