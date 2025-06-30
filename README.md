@@ -38,7 +38,8 @@ Permette di monitorare bilanci, transazioni, budget, pots (obiettivi di risparmi
 
 ---
 
-## 🧱 Architettura del backend
+##  📁 Architettura del frontend
+<pre> ``` 
 Frontend-Angular/
 ├── src/
 │ ├── app/
@@ -50,7 +51,9 @@ Frontend-Angular/
 │ └── environments/
 ├── angular.json
 └── package.json
+---
 
+## 🧱 Architettura del backend
 *Backend (ASP.NET Core Web API)*
 Backend-ASP.NET/
 ├── BillsService/
@@ -67,7 +70,7 @@ Backend-ASP.NET/
 │ └── appsettings.json
 ├── PersonalFinanceWeb/
 │ └── (progetto gateway/API principale)
-
+ ``` </pre>
 ---
 🙋‍♂️ Author
 
