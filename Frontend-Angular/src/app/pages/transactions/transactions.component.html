@@ -59,7 +59,7 @@
         <tr *ngFor="let tx of filteredTransactions">
           <td class="fw-medium">{{ tx.name }}</td>
           <td>{{ tx.category }}</td>
-          <td>{{ tx.date }}</td>
+          <td>{{ tx.transactionDate }}</td>
           <td [ngClass]="{ 'text-success': tx.amount > 0, 'text-danger': tx.amount < 0 }">
             {{ tx.amount > 0 ? '+' : '' }}${{ tx.amount.toFixed(2) }}
           </td>

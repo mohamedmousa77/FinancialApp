@@ -2,6 +2,7 @@ import { Component,OnInit  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TransactionModel } from '../../models/transaction-model';
+import { TransactionService } from '../../services/transaction/transaction.service';
 
 @Component({
   selector: 'transactions-page',
@@ -10,41 +11,41 @@ import { TransactionModel } from '../../models/transaction-model';
   styleUrl: './transactions.component.scss'
 })
 export class TransactionsPage implements OnInit{
-  transactions: TransactionModel[] = [
-  {
-    name: 'Emma Richardson',
-    amount: 75.50,
-    date: '19 Aug 2024',
-    category: "Dinig out"
-  },
-  {
-    name: 'Savory Bites Bistro',
-    amount: -55.50,
-    date: '19 Aug 2024',
-    category: "General"
-  },
-  {
-    name: 'Daniel Carter',
-    amount: -42.30,
-    date: '18 Aug 2024',
+//   transactions: TransactionModel[] = [
+//   {
+//     name: 'Emma Richardson',
+//     amount: 75.50,
+//     transactionDate: '19 Aug 2024',
+//     category: "Dinig out"
+//   },
+//   {
+//     name: 'Savory Bites Bistro',
+//     amount: -55.50,
+//     transactionDate: '19 Aug 2024',
+//     category: "General"
+//   },
+//   {
+//     name: 'Daniel Carter',
+//     amount: -42.30,
+//     transactionDate: '18 Aug 2024',
     
-    category: "General"
-  },
-  {
-    name: 'Sun Park',
-    amount: 120.00,
-    date: '17 Aug 2024',
+//     category: "General"
+//   },
+//   {
+//     name: 'Sun Park',
+//     amount: 120.00,
+//     transactionDate: '17 Aug 2024',
     
-    category: "Dinig out"
-  },
-  {
-    name: 'Urban Services Hub',
-    amount: -65.00,
-    date: '17 Aug 2024',
+//     category: "Dinig out"
+//   },
+//   {
+//     name: 'Urban Services Hub',
+//     amount: -65.00,
+//     transactionDate: '17 Aug 2024',
     
-    category: "Dinig out"
-  }
-];
+//     category: "Dinig out"
+//   }
+// ];
 
   searchTerm = '';
   selectedCategory = '';
@@ -52,8 +53,17 @@ export class TransactionsPage implements OnInit{
   sortOrder = 'desc';
   uniqueCategories: string[] = [];
 
+//? API BackEnd
+  transactions: TransactionModel[] = [];
+
+  constructor(private transactionService: TransactionService) {  }
+
   ngOnInit(): void {
     this.extractUniqueCategories();
+    this.transactionService.getAll().subscribe(data => {
+      this.transactions = data;
+    });
+
   }
 
   get filteredTransactions() {
@@ -84,7 +94,7 @@ export class TransactionsPage implements OnInit{
       } else if (this.sortBy === 'category') {
         compare = a.category.localeCompare(b.category);
       } else if (this.sortBy === 'date') {
-        compare = new Date(a.date).getTime() - new Date(b.date).getTime();
+        compare = new Date(a.transactionDate).getTime() - new Date(b.transactionDate).getTime();
       }
 
       return this.sortOrder === 'asc' ? compare : -compare;

@@ -41,7 +41,6 @@ namespace TransactionsService
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
-                //app.UseSwaggerUI();
                 app.UseSwaggerUI(config =>
                 {
                     config.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { enviroment } from '../../enviroment/enviroment.prod';
+import { enviroment } from '../../enviroment/enviroment';
 import { TransactionModel } from '../../models/transaction-model';
 
 
@@ -9,10 +9,11 @@ import { TransactionModel } from '../../models/transaction-model';
   providedIn: 'root'
 })
 export class TransactionService {
-private apiUrl = `${enviroment.apiUrl}/TransactionModels`;
+private apiUrl = `${enviroment.apiUrl}/Transactions`;
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<TransactionModel[]> {
+    console.log('transaction called')
     return this.http.get<TransactionModel[]>(this.apiUrl);
   }
 
