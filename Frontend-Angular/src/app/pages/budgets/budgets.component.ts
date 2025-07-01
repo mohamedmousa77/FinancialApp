@@ -18,11 +18,7 @@ selectedBudgetIndex: number | null = null;
 showModal = false;
 
 
-budgets: Budget[] = [
-  {id:1, category: 'Entertainment', amount: 50, spent: 15, color: '#13635b' },
-  {id:2, category: 'Bills', amount: 750, spent: 250, color: '#78c4d4' },
-  
-];
+budgets: Budget[] = [];
 
 newBudget = {
   category: '',
@@ -62,13 +58,31 @@ createBudget() {
   }
   if (this.selectedBudgetIndex !== null) {
       // Modifica
-      this.budgets[this.selectedBudgetIndex] = { ...this.newBudget };
+      const updatedBudget = { ...this.newBudget, id: this.editingId! };
+      this.budgetSetvices.update(updatedBudget).subscribe(() => {
+        if (this.selectedBudgetIndex !== null) {
+          this.budgets[this.selectedBudgetIndex] = updatedBudget;
+        }
+        this.closeModal();
+      });
     } else {
       // Nuova creazione
-      this.budgets.push({ ...this.newBudget, spent: 0 });
+      this.budgetSetvices.create({ ...this.newBudget, spent: 0 })
+      .subscribe(createdBudget => {
+        this.budgets.push(createdBudget);
+        this.closeModal();
+      });
     }
 
   this.closeModal();
+}
+
+deleteBudget(id: number) {
+  if (confirm('Are you sure you want to delete this budget?')) {
+    this.budgetSetvices.delete(id).subscribe(() => {
+      this.budgets = this.budgets.filter(b => b.id !== id);
+    });
+  }
 }
 
 resetForm() {
@@ -111,10 +125,6 @@ openModalForEdit(b: Budget) {
     spent: b.spent
   };
   this.showModal = true;
-}
-
-deleteBudget(id: number) {
-  this.budgets = this.budgets.filter(b => b.id !== id);
 }
 
 }

@@ -20,10 +20,12 @@ private apiUrl = `${enviroment.apiUrl}/Budgets`;
     }
   
     create(Budget: Budget): Observable<Budget> {
+      console.log("Create called")
       return this.http.post<Budget>(this.apiUrl, Budget);
     }
   
     update(Budget: Budget): Observable<void> {
+      console.log("update called")
       return this.http.put<void>(`${this.apiUrl}/${Budget.id}`, Budget);
     }
   

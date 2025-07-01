@@ -18,8 +18,8 @@ editingId: number | null = null;
 selectedPotIndex: number | null = null;
 
 pots: Pot[] = [
-  {id: 1, targetAmount: 100, currentAmount: 30, color: '#13635b', name: 'Gift'},
-  {id: 2, targetAmount: 1000,currentAmount: 500, color: '#78c4d4', name: 'Saving'},
+//   {id: 1, targetAmount: 100, currentAmount: 30, color: '#13635b', name: 'Gift'},
+//   {id: 2, targetAmount: 1000,currentAmount: 500, color: '#78c4d4', name: 'Saving'},
 ]
 
 newPot = {
@@ -74,13 +74,31 @@ createBudget() {
   }
   if (this.selectedPotIndex !== null) {
       // Modifica
-      this.pots[this.selectedPotIndex] = { ...this.newPot };
+      const updatedBudget = { ...this.newPot, id: this.editingId! };
+      this.potServices.update(updatedBudget).subscribe(() => {
+        if (this.selectedPotIndex !== null) {
+          this.pots[this.selectedPotIndex] = updatedBudget;
+        }
+        this.closeModal();
+      });
     } else {
       // Nuova creazione
-      this.pots.push({ ...this.newPot});
+      this.potServices.create({ ...this.newPot})
+      .subscribe(createdBudget => {
+        this.pots.push(createdBudget);
+        this.closeModal();
+      });
     }
 
   this.closeModal();
+}
+
+deletePot(id: number) {
+  if (confirm('Are you sure you want to delete this Pot?')) {
+    this.potServices.delete(id).subscribe(() => {
+      this.pots = this.pots.filter(b => b.id !== id);
+    });
+  }
 }
 
 resetForm() {
@@ -103,11 +121,9 @@ openModalForEdit(pot: Pot) {
     color:pot.color,
   };
   this.showModal = true;
+  // this.resetForm();
 }
 
-deleteBudget(id: number) {
-  this.pots = this.pots.filter(pot => pot.id !== id);
-}
 
 
 }
