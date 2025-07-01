@@ -10,7 +10,7 @@ namespace BudgetsService.DTOs
         public string Category { get; set; }
 
         [Range(0, 1000000, ErrorMessage = "L'importo deve essere compreso tra 0 e 1.000.000")]
-        [Required(ErrorMessage = "La categoria è obbligatoria")]
+        [Required(ErrorMessage = "l'importo è obbligatoria")]
         public int Amount { get; set; }
 
         public int Spent { get; set; }
