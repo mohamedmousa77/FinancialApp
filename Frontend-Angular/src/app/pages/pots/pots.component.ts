@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Pot } from '../../models/pot-model';
+import { PotService } from '../../services/pots/pot.service';
 
 @Component({
   selector: 'pots-page',
@@ -9,7 +10,7 @@ import { Pot } from '../../models/pot-model';
   templateUrl: './pots.component.html',
   styleUrl: './pots.component.scss'
 })
-export class PotsPage {
+export class PotsPage implements OnInit {
 showModal = false;
 
 editMode = false;
@@ -30,6 +31,13 @@ newPot = {
 
 themeColors = ['#2F8F9D', '#97C4D6', '#F2C57C', '#595260', '#D1493F', '#F29E4C', '#70AE6E', '#00BFFF'];
 
+constructor(private potServices: PotService) {}
+  
+  ngOnInit(): void {
+    this.potServices.getAll().subscribe(data => {
+      this.pots = data;
+    });
+  }
 
 get totalSaved() {
   return this.pots.reduce((sum, b) => sum + b.currentAmount, 0);

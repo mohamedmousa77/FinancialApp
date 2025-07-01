@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Bill } from '../../models/bill-model';
+import { BillService } from '../../services/bills/bill.service';
 
 @Component({
   selector: 'bills-page',
@@ -9,7 +10,7 @@ import { Bill } from '../../models/bill-model';
   templateUrl: './bills.component.html',
   styleUrl: './bills.component.scss'
 })
-export class BillsPage {
+export class BillsPage implements OnInit{
   showModal= false;
   status= ['Due', 'Paid', 'Overdue'];
   bills: Bill[] = [
@@ -17,6 +18,7 @@ export class BillsPage {
     {id: 2, amount: 3000, billName:'Car Insurance', date:'', status:this.status[1]},
     {id: 3, amount: 5000, billName:'Gym Membership', date:'', status:this.status[2]},
   ];
+
   searchTerm = '';
   sortBy = 'name';
   sortStatus = '';
@@ -32,6 +34,13 @@ export class BillsPage {
     status: '', 
   }
 
+  constructor(private billService: BillService) {}
+
+  ngOnInit(): void {
+    this.billService.getAll().subscribe(data => {
+      this.bills = data;
+    });
+  }
   get TotalPaid() {
     return this.bills
     .filter(bill => bill.status == 'Paid')
