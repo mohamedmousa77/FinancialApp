@@ -1,5 +1,6 @@
 # 💰 Personal Finance Dashboard
-![alt text](image.png)
+![Overview-page](https://github.com/user-attachments/assets/ee431eb1-2f8d-4753-839c-11d875b4a5ce)
+
 
 Un'applicazione web full-stack per la gestione delle finanze personali, sviluppata con **Angular** (frontend) e **ASP.NET Core** (backend).  
 Permette di monitorare bilanci, transazioni, budget, pots (obiettivi di risparmio), e spese ricorrenti.
