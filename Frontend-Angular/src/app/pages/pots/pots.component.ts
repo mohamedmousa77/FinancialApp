@@ -72,16 +72,19 @@ createBudget() {
     alert("Please fill all fields correctly.");
     return;
   }
-  if (this.selectedPotIndex !== null) {
+  if (this.editMode) {
+    console.log("Were are in the modification mode.");
       // Modifica
       const updatedBudget = { ...this.newPot, id: this.editingId! };
       this.potServices.update(updatedBudget).subscribe(() => {
         if (this.selectedPotIndex !== null) {
+          
           this.pots[this.selectedPotIndex] = updatedBudget;
         }
         this.closeModal();
       });
     } else {
+      console.log("Were are in the creation mode.");
       // Nuova creazione
       this.potServices.create({ ...this.newPot})
       .subscribe(createdBudget => {
@@ -102,6 +105,7 @@ deletePot(id: number) {
 }
 
 resetForm() {
+  this.editMode = false;
   this.newPot = {
     name: '',
     targetAmount: 0,
@@ -111,6 +115,7 @@ resetForm() {
 }
 
 openModalForEdit(pot: Pot) {
+  console.log("open modal for edit called..");
   this.editMode = true;
   this.editingId = pot.id!;
   this.selectedPotIndex = this.pots.findIndex(p => p.id === pot.id);  

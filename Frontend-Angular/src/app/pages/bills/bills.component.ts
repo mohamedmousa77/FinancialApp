@@ -41,21 +41,24 @@ export class BillsPage implements OnInit{
       this.bills = data;
     });
   }
+
   get TotalPaid() {
     return this.bills
     .filter(bill => bill.status == 'Paid')
     .reduce((sum, bill) => sum + bill.amount, 0); 
   }
+
   get TotalUpcoming() {
     return this.bills
     .filter(bill => bill.status == 'Due')
     .reduce((sum, bill) => sum + bill.amount, 0); 
   }
+
   get TotalBills() {
     return this.bills.length;
   }
 
-    get filteredBills() {
+  get filteredBills() {
     let result = [...this.bills];
 
     // Filter by search term by bill name
@@ -95,15 +98,24 @@ export class BillsPage implements OnInit{
     alert("Please fill all fields correctly.");
     return;
   }
-  if (this.selectedBillIndex !== null) {
+  if (this.editMode) {
       // Modifica
-      this.bills[this.selectedBillIndex] = { ...this.newBill };
+      const updatedBill = {...this.newBill, id: this.editingId!}
+      this.billService.update(updatedBill).subscribe(() => {
+        if (this.selectedBillIndex !== null ){
+        this.bills[this.selectedBillIndex] = { ...this.newBill };
+      }
+      this.closeModal();
+      });
+      
     } else {
       // Nuova creazione
-      this.bills.push({ ...this.newBill});
+      this.billService.create({...this.newBill})
+      .subscribe(()=> {
+        this.bills.push({ ...this.newBill});
+        this.closeModal();
+      }) 
     }
-
-  this.closeModal();
 }
 
   openModal() {
@@ -114,7 +126,9 @@ export class BillsPage implements OnInit{
     this.showModal = false;
     this.resetForm();
   }
+
   resetForm() {
+    this.editMode = false;
     this.newBill = {
     billName: '',
     amount: 0,
@@ -136,8 +150,13 @@ export class BillsPage implements OnInit{
     this.showModal = true;
   }
 
-  deleteBudget(id: number) {
-    this.bills = this.bills.filter(bill => bill.id !== id);
+  
+deleteBill(id: number) {
+  if (confirm('Are you sure you want to delete this Pot?')) {
+    this.billService.delete(id).subscribe(() => {
+      this.bills = this.bills.filter(b => b.id !== id);
+    });
   }
+}
 
 }

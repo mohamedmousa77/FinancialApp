@@ -2,6 +2,7 @@
 using BillsService.DTOs;
 using BillsService.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace BillsService.Services
 {
@@ -14,11 +15,15 @@ namespace BillsService.Services
         }
         public Task<BillDto> CreateBill(BillDto dto)
         {
+            if (!DateTime.TryParseExact(dto.Date, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+            {
+                Console.WriteLine("Formato data non valido. Usa dd/MM/yyyy");
+            }
             var Bill = new Bill
             {
                 BillName = dto.BillName,
                 Amount = dto.Amount,
-                Date = dto.Date,
+                Date = parsedDate,
                 Status = dto.Status
             };
             _billDbContext.Bills.Add(Bill); 
@@ -44,7 +49,7 @@ namespace BillsService.Services
                     Id = bill.Id,
                     BillName = bill.BillName,
                     Amount = bill.Amount,
-                    Date = bill.Date,
+                    Date = bill.Date.ToString("dd/MM/yyyy"),
                     Status = bill.Status
                 }).ToListAsync();
         }
