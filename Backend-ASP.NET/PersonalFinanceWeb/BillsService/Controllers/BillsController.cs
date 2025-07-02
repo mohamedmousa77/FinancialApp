@@ -45,5 +45,16 @@ namespace BillsService.Controllers
                 return NotFound();
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            bool success = await _billsService.DeleteBill(id);
+
+            if (!success)
+                return NotFound();
+
+            return NoContent();
+        }
     }
 }

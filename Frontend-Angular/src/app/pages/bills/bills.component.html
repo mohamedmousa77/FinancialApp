@@ -1,4 +1,4 @@
-<div class="d-flex container p-4 justify-content-between">
+<div class="d-flex container-fluid p-4 justify-content-between">
 <!-- Header -->
   <div>
     <h1 class="header-title">Recurring Bills</h1>
@@ -73,9 +73,9 @@
           <strong class="fs-5">{{ bill.billName }}</strong>
           <span class="badge"
                 [ngClass]="{
-                  'bg-success-subtle text-success': bill.status === 'Paid' || 'paid' ,
-                  'bg-warning-subtle text-warning': bill.status === 'Due' || 'due',
-                  'bg-danger-subtle text-danger': bill.status === 'Overdue' || 'overdue'
+                  'bg-success-subtle text-success': bill.status === 'Paid',
+                  'bg-warning-subtle text-warning': bill.status === 'Due',
+                  'bg-danger-subtle text-danger': bill.status === 'Overdue'
                 }"
                 style="text-transform: lowercase;">
             {{ bill.status }}

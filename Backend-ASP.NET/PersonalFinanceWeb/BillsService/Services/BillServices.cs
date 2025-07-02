@@ -63,7 +63,7 @@ namespace BillsService.Services
                 Id = bill.Id,
                 BillName = bill.BillName,
                 Amount = bill.Amount,
-                Date = bill.Date,
+                Date = bill.Date.ToString("dd/MM/yyyy"),
                 Status = bill.Status
             };
 
@@ -71,12 +71,16 @@ namespace BillsService.Services
 
         public async Task<bool> UpdateBill(int id, BillDto dto)
         {
+            if (!DateTime.TryParseExact(dto.Date, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+            {
+                Console.WriteLine("Formato data non valido. Usa dd/MM/yyyy");
+            }
             var bill =await _billDbContext.Bills.FindAsync(id);
             if (bill == null) return false;
             
             bill.BillName = dto.BillName;
             bill.Amount = dto.Amount;
-            bill.Date = dto.Date;
+            bill.Date = parsedDate;
             bill.Status = dto.Status;
 
             await _billDbContext.SaveChangesAsync();
